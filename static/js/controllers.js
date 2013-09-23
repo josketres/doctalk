@@ -27,7 +27,10 @@ function DocumentCtrl($scope, Document, Comment) {
 		newComment.$save({
 			documentId: 'reforma-educativa',
 			paragraphId: $scope.activeParagraph.id
+		}, function() {
+			$scope.activateParagraph($scope.activeParagraph.id);
 		});
-		$scope.activateParagraph($scope.activeParagraph.id);
+		$scope.commenterName = undefined;
+		$scope.comment = undefined;
 	};
 };

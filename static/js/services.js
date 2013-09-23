@@ -7,6 +7,7 @@ factory('Document', function($resource) {
 			params: {
 				documentId: 'null'
 			},
+			cache : true,
 			isArray: false
 		}
 	});
@@ -20,6 +21,7 @@ factory('Comment', function($resource) {
 				documentId: 'null',
 				paragraphId: 'null'
 			},
+			cache : false,
 			isArray: true
 		}
 	});

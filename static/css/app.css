@@ -42,3 +42,12 @@ div.doc-unit > div.content.active {
 	padding-left: 10px;
 	padding-right: 10px;
 }
+
+.test-system-warning {
+    background-color: #ffce40;
+    color: black;
+    position: relative;
+    text-align: center;
+    width: 100%;
+    z-index: 4000;
+}

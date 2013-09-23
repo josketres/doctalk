@@ -18,6 +18,10 @@ app.use('/test', express.static(__dirname + '/test/e2e'));
 app.get('/api/document/:documentId/:paragraphId/comments', api.comments);
 app.post('/api/document/:documentId/:paragraphId/comments', api.addComments);
 
-
 app.listen(8000);
 console.log('Listening on port 8000');
+
+if (process.argv[2] == 'run-startup-scripts') {
+	var appStart = require('./scripts/app-startup.js');
+	appStart.startup();
+}

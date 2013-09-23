@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="doctalk">
+<html lang="en"  xmlns:ng="http://angularjs.org" id="ng-app" ng-app="doctalk">
 <head>
 	<meta charset="utf-8">
 	<title>Comentemos - La reforma educativa</title>
@@ -10,9 +10,15 @@
 	<script src="static/js/app.js"></script>
 	<script src="static/js/controllers.js"></script>
 	<script src="static/js/services.js"></script>
+	 <!--[if lte IE 8]>
+	<script src="static/managed/json2/json2.js"></script>
+	<![endif]-->
 </head>
 <body ng-controller="DocumentCtrl">
-	<div class="container-fluid">
+		<div class="test-system-warning">
+				Prototipo en version de prueba. Los comentarios permanecer&aacute;n de manera temporal en el sistema y ser&aacute;n eliminados en la siguiente actualizaci&oacute;n.
+		</div>
+		<div class="container-fluid">
 		<div class="row-fluid">
 			<div id='document' class='span8'>
 				<h1>{{doc.title}}</h1>
@@ -30,17 +36,25 @@
 			</div>
 			<div id="sidebar" class="span4">
 				<div class="newComment" ng-show="activeParagraph.isActive()">
-					<p>
-						Nombre:
-						<input type='text' ng-model="commenterName" />
-					</p>
-					<p>
-						Comentario:
-						<input type='text' ng-model="comment" />
-					</p>
-					<p>
-						<button ng-click="addComment()">Comenta</button>
-					</p>
+					<form class="form-horizontal">
+						<div class="control-group">
+							<label class="control-label" for="inputName">Nombre</label>
+							 <div class="controls">
+								<input type="text" id="inputName" placeholder="Nombre" ng-model="commenterName" />
+							</div>
+						</div>
+						<div class="control-group">
+							<label class="control-label" for="inputComment">Comentario</label>
+							 <div class="controls">
+							 	<textarea rows="3" id="inputComment" placeholder="Comentario" ng-model="comment"></textarea>
+							</div>
+						</div>
+						 <div class="control-group">
+							<div class="controls">
+								<button type="button" class="btn" ng-click="addComment()">Deja tu comentario</button>
+							</div>
+						</div>
+					</form>
 				</div>
 				<div class="comments" ng-repeat="comment in activeParagraph.comments">
 					<div class="comment first">
