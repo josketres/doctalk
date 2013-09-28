@@ -1,7 +1,7 @@
 {
-  "name": "doctalks",
+  "name": "doctalk",
   "description": "Social commenting documents online",
-  "subdomain": "josketres-doctalks",
+  "subdomain": "josketres-doctalk",
   "domains": [
     "comentemos.net",
     "www.comentemos.net"
