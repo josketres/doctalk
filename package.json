@@ -1,11 +1,7 @@
 {
-  "name": "doctalk",
+  "name": "doctalks",
   "description": "Social commenting documents online",
-  "subdomain": "josketres-doctalk",
-  "domains": [
-    "comentemos.net",
-    "www.comentemos.net"
-  ],
+  "subdomain": "josketres-doctalks",
   "private": true,
   "dependencies": {
     "express": "3.3.5",
