@@ -2,69 +2,11 @@
 <html lang="en"  xmlns:ng="http://angularjs.org" id="ng-app" ng-app="doctalk">
 <head>
 	<meta charset="utf-8">
-	<title>Comentemos - La reforma educativa (development branch)</title>
+	<title>Comentemos</title>
 	<link rel="stylesheet" href="static/managed/bootstrap.css/css/bootstrap.css">
 	<link rel="stylesheet" href="static/css/app.css">
-	<script src="static/managed/angular/angular.js"></script>
-	<script src="static/managed/angular-resource/angular-resource.js"></script>
-	<script src="static/js/app.js"></script>
-	<script src="static/js/controllers.js"></script>
-	<script src="static/js/services.js"></script>
-	 <!--[if lte IE 8]>
-	<script src="static/managed/json2/json2.js"></script>
-	<![endif]-->
 </head>
-<body ng-controller="DocumentCtrl">
-		<div class="test-system-warning">
-				Prototipo en version de prueba. Los comentarios permanecer&aacute;n de manera temporal en el sistema y ser&aacute;n eliminados en la siguiente actualizaci&oacute;n.
-		</div>
-		<div class="container-fluid">
-		<div class="row-fluid">
-			<div id='document' class='span8'>
-				<h1>{{doc.title}}</h1>
-				<p>
-					Documento original:
-					<a href="{{doc.reference}}">{{doc.reference}}</a>
-				</p>
-				<div class="doc-unit" ng-repeat='part in doc.parts'>
-					<div class='content' 
-						ng-click="activateParagraph($index+1)" 
-						ng-class="(($index+1 == activeParagraph.id) && 'active' || ' ')">
-						<p ng-repeat="paragraph in part.paragraphs">{{paragraph}}</p>
-					</div>
-				</div>
-			</div>
-			<div id="sidebar" class="span4">
-				<div class="newComment" ng-show="activeParagraph.isActive()">
-					<form class="form-horizontal">
-						<div class="control-group">
-							<label class="control-label" for="inputName">Nombre</label>
-							 <div class="controls">
-								<input type="text" id="inputName" placeholder="Nombre" ng-model="commenterName" />
-							</div>
-						</div>
-						<div class="control-group">
-							<label class="control-label" for="inputComment">Comentario</label>
-							 <div class="controls">
-							 	<textarea rows="3" id="inputComment" placeholder="Comentario" ng-model="comment"></textarea>
-							</div>
-						</div>
-						 <div class="control-group">
-							<div class="controls">
-								<button type="button" class="btn" ng-click="addComment()">Deja tu comentario</button>
-							</div>
-						</div>
-					</form>
-				</div>
-				<div class="comments" ng-repeat="comment in activeParagraph.comments">
-					<div class="comment first">
-						<p> <strong>{{comment.user}}</strong>
-							{{comment.comment}}
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+<body>
+	<a href="la/reforma-energetica">La reforma energetica</a>
 </body>
 </html>
