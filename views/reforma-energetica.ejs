@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"  xmlns:ng="http://angularjs.org" id="ng-app" ng-app="doctalk">
+<head>
+	<meta charset="utf-8">
+	<title>Comentemos - La reforma educativa (development branch)</title>
+	<link rel="stylesheet" href="/static-managed/bootstrap.css/css/bootstrap.css">
+	<link rel="stylesheet" href="/static/css/app.css">
+	<script src="/static-managed/angular/angular.js"></script>
+	<script src="/static-managed/angular-resource/angular-resource.js"></script>
+	<script src="/static/js/app.js"></script>
+	<script src="/static/js/controllers.js"></script>
+	<script src="/static/js/services.js"></script>
+	 <!--[if lte IE 8]>
+	<script src="static/managed/json2/json2.js"></script>
+	<![endif]-->
+</head>
+<body ng-controller="DocumentCtrl">
+	<div class="test-system-warning">
+		Prototipo en version de prueba. Los comentarios permanecer&aacute;n de manera temporal en el sistema y ser&aacute;n eliminados en la siguiente actualizaci&oacute;n.
+	</div>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div id='document' class='span8'>
+				<h1>{{doc.title}}</h1>
+				<p>
+					Documento original:
+					<a href="{{doc.reference}}">{{doc.reference}}</a>
+				</p>
+				<div class="doc-unit" ng-repeat='part in doc.parts'>
+					<div class='content' 
+					ng-click="activateParagraph($index+1)" 
+					ng-class="(($index+1 == activeParagraph.id) && 'active' || ' ')">
+					<p ng-repeat="paragraph in part.paragraphs">{{paragraph}}</p>
+				</div>
+			</div>
+		</div>
+		<div id="sidebar" class="span4">
+		</div>
+	</div>
+</div>
+</body>
+</html>
