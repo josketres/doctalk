@@ -1,9 +1,8 @@
 'use strict';
 
-/* jasmine specs for controllers go here */
-describe('PhoneCat controllers', function() {
+describe('DocTalk Controllers', function() {
 
-  beforeEach(function(){
+  beforeEach(function() {
     this.addMatchers({
       toEqualData: function(expected) {
         return angular.equals(this.actual, expected);
@@ -11,62 +10,68 @@ describe('PhoneCat controllers', function() {
     });
   });
 
-  beforeEach(module('phonecatApp'));
-  beforeEach(module('phonecatServices'));
+  beforeEach(module('doctalk'));
+  beforeEach(module('doctalkServices'));
 
-  describe('PhoneListCtrl', function(){
+  describe('DocumentCtrl', function() {
     var scope, ctrl, $httpBackend;
 
     beforeEach(inject(function(_$httpBackend_, $rootScope, $controller) {
       $httpBackend = _$httpBackend_;
-      $httpBackend.expectGET('phones/phones.json').
-          respond([{name: 'Nexus S'}, {name: 'Motorola DROID'}]);
+      $httpBackend.expectGET('/static/data/reforma-educativa/document.json')
+        .respond({
+          "title": "La reforma educativa",
+          "reference": "http://pactopormexico.org/Reforma-Educativa.pdf",
+          "parts": [{
+            "paragraphs": [
+              "foo",
+              "bar"
+            ]
+          }]
+        });
 
       scope = $rootScope.$new();
-      ctrl = $controller('PhoneListCtrl', {$scope: scope});
+      ctrl = $controller('DocumentCtrl', {
+        $scope: scope
+      });
     }));
 
 
-    it('should create "phones" model with 2 phones fetched from xhr', function() {
-      expect(scope.phones).toEqualData([]);
+    it('should create "document" model with document fetched from xhr', function() {
+      expect(scope.doc).toEqualData({});
       $httpBackend.flush();
 
-      expect(scope.phones).toEqualData(
-          [{name: 'Nexus S'}, {name: 'Motorola DROID'}]);
+      expect(scope.doc).toEqualData({
+        "title": "La reforma educativa",
+        "reference": "http://pactopormexico.org/Reforma-Educativa.pdf",
+        "parts": [{
+          "paragraphs": [
+            "foo",
+            "bar"
+          ]
+        }]
+      });
     });
 
+    it("should activate pharagraph 1 and load its comments", function() {
+      $httpBackend.expectGET('/api/document/reforma-educativa/p0/comments')
+        .respond([{
+          id: 1,
+          user: 'josue',
+          comment: 'foobar'
+        }]);
 
-    it('should set the default value of orderProp model', function() {
-      expect(scope.orderProp).toBe('age');
-    });
-  });
+      expect(scope.activeParagraph.isActive()).toBe(false);
 
-
-  describe('PhoneDetailCtrl', function(){
-    var scope, $httpBackend, ctrl,
-        xyzPhoneData = function() {
-          return {
-            name: 'phone xyz',
-                images: ['image/url1.png', 'image/url2.png']
-          }
-        };
-
-
-    beforeEach(inject(function(_$httpBackend_, $rootScope, $routeParams, $controller) {
-      $httpBackend = _$httpBackend_;
-      $httpBackend.expectGET('phones/xyz.json').respond(xyzPhoneData());
-
-      $routeParams.phoneId = 'xyz';
-      scope = $rootScope.$new();
-      ctrl = $controller('PhoneDetailCtrl', {$scope: scope});
-    }));
-
-
-    it('should fetch phone detail', function() {
-      expect(scope.phone).toEqualData({});
+      scope.activateParagraph(0);
       $httpBackend.flush();
 
-      expect(scope.phone).toEqualData(xyzPhoneData());
+      expect(scope.activeParagraph.isActive()).toBe(true);
+      expect(scope.activeParagraph.comments).toEqualData([{
+        id: 1,
+        user: 'josue',
+        comment: 'foobar'
+      }]);
     });
   });
 });
