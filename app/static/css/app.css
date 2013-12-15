@@ -12,9 +12,16 @@
 	border-right: 5px solid #e1e1e1;
 }
 
-div.doc-unit > div.content:hover, 
-div.doc-unit > div.content.active {	
+div.doc-unit > div.content:hover,
+div.doc-unit > div.content.active {
 	border-right: 5px solid #ffce40; 
+}
+
+div.doc-unit > div.content:hover {
+	background: #FFF89F;	
+}
+
+div.doc-unit > div.content.active {	
 	background: #ffdb73;
 }
 

@@ -21,7 +21,7 @@ function DocumentCtrl($scope, $routeParams, $location, Document, Comment) {
  * Shows a specific part of the document and allows to view all the other parts of the document.
  */
 
-function PartCtrl($scope, $routeParams, $location, Document, Comment) {
+function PartCtrl($scope, $timeout, $routeParams, $location, Document, Comment) {
 
 	$scope.documentId = $routeParams.documentId;
 	$scope.partId = parseInt($routeParams.partId);
@@ -57,6 +57,7 @@ function PartCtrl($scope, $routeParams, $location, Document, Comment) {
 
 	$scope.activatePart = function(partId) {
 		$location.path('/' + $scope.documentId + '/p' + partId);
+		$scope.reloadComments();
 	};
 
 	$scope.loadPreviousParts = function() {
@@ -73,7 +74,17 @@ function PartCtrl($scope, $routeParams, $location, Document, Comment) {
 		for (i = $scope.partId + 1; i <= $scope.doc.parts.length; ++i) {
 			next.push(part(i));
 		}
-		$scope.visibleParts = $scope.visibleParts.concat(previous);
+		$scope.visibleParts = $scope.visibleParts.concat(next);
 		$scope.nextLoaded = true;
+	};
+
+	$scope.$on('$routeChangeSuccess', function() {
+		$timeout($scope.reloadComments);
+	});
+
+	$scope.reloadComments = function() {
+		if (typeof(FB) != 'undefined') {
+			FB.XFBML.parse();
+		}
 	};
 };
