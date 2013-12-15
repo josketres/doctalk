@@ -42,12 +42,3 @@ div.doc-unit > div.content.active {
     right: 1em;
     margin-top: 30px;
 }
-
-.test-system-warning {
-    background-color: #ffce40;
-    color: black;
-    position: relative;
-    text-align: center;
-    width: 100%;
-    z-index: 4000;
-}
