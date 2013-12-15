@@ -14,7 +14,7 @@ describe('DocTalk Controllers', function() {
   beforeEach(module('doctalkServices'));
 
   describe('DocumentCtrl', function() {
-    var scope, ctrl, $httpBackend;
+    var scope, ctrl, routeParams, $httpBackend;
 
     beforeEach(inject(function(_$httpBackend_, $rootScope, $controller) {
       $httpBackend = _$httpBackend_;
@@ -30,9 +30,14 @@ describe('DocTalk Controllers', function() {
           }]
         });
 
+      routeParams = {
+        documentId: 'reforma-educativa'
+      };
+
       scope = $rootScope.$new();
       ctrl = $controller('DocumentCtrl', {
-        $scope: scope
+        $scope: scope,
+        $routeParams: routeParams
       });
     }));
 
@@ -52,26 +57,77 @@ describe('DocTalk Controllers', function() {
         }]
       });
     });
+  });
 
-    it("should activate pharagraph 1 and load its comments", function() {
-      $httpBackend.expectGET('/api/document/reforma-educativa/p0/comments')
-        .respond([{
-          id: 1,
-          user: 'josue',
-          comment: 'foobar'
-        }]);
+  describe('PartCtrl', function() {
+    var scope, ctrl, routeParams, $httpBackend;
 
-      expect(scope.activeParagraph.isActive()).toBe(false);
+    beforeEach(inject(function(_$httpBackend_, $rootScope, $controller) {
+      $httpBackend = _$httpBackend_;
+      $httpBackend.expectGET('/static/data/reforma-educativa/document.json')
+        .respond({
+          "title": "t",
+          "reference": "r",
+          "parts": [{
+            "paragraphs": [
+              "1A"
+            ]
+          }, {
+            "paragraphs": [
+              "2A",
+              "2B"
+            ]
+          }, {
+            "paragraphs": [
+              "3A"
+            ]
+          }, {
+            "paragraphs": [
+              "4A"
+            ]
+          }]
+        });
 
-      scope.activateParagraph(0);
+      routeParams = {
+        documentId: 'reforma-educativa',
+        partId: '2'
+      };
+
+      scope = $rootScope.$new();
+      ctrl = $controller('PartCtrl', {
+        $scope: scope,
+        $routeParams: routeParams
+      });
+    }));
+
+
+    it('should make initially visible actual part, one before and one after', function() {
+      expect(scope.visibleParts).toEqualData([]);
       $httpBackend.flush();
 
-      expect(scope.activeParagraph.isActive()).toBe(true);
-      expect(scope.activeParagraph.comments).toEqualData([{
+      expect(scope.visibleParts[0]).toEqualData({
+        'active': false,
         id: 1,
-        user: 'josue',
-        comment: 'foobar'
-      }]);
+        paragraphs: [
+          '1A'
+        ]
+      });
+      expect(scope.visibleParts[1]).toEqualData({
+        'active': true,
+        'id': 2,
+        "paragraphs": [
+          '2A',
+          '2B'
+        ]
+      });
+      expect(scope.visibleParts[2]).toEqualData({
+        'active': false,
+        'id': 3,
+        "paragraphs": [
+          "3A"
+        ]
+      });
     });
   });
+
 });

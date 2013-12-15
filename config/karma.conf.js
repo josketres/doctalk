@@ -5,7 +5,7 @@ module.exports = function(config) {
 		files: [
 			'bower_components/angular/angular.js',
 			'bower_components/angular-*/angular-*.js',
-			'static/js/**/*.js',
+			'app/static/js/**/*.js',
 			'test/unit/**/*.js'
 		],
 

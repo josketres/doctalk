@@ -18,29 +18,22 @@ div.doc-unit > div.content.active {
 	background: #ffdb73;
 }
 
+.button-load-parts {
+	cursor: pointer;
+	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+
+.button-load-parts:hover {
+	text-decoration: underline;
+}
+
 #sidebar {
 	position: fixed;
     top: 1em;
     right: 1em;
     margin-top: 30px;
-}
-
-#sidebar div.comment.first {
-	border-top: 1px solid #e1e1e1;
-}
-
-#sidebar div.comment {
-	border-bottom: 1px solid #e1e1e1;
-	background: #f0f0f0;
-	margin-bottom: 5px;
-}
-
-#sidebar div.comment p {
-	font-family: tahoma,​verdana,​arial,​sans-serif;
-	font-size: 11px;
-	text-align : justify;
-	padding-left: 10px;
-	padding-right: 10px;
 }
 
 .test-system-warning {
