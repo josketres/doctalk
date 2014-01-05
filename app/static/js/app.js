@@ -12,7 +12,9 @@ app.config(['$routeProvider',
 			controller: 'PartCtrl'
 		}).
 		otherwise({
-			redirectTo: '/reforma-educativa'
-		});
+			templateUrl: 'static/partials/home.html',
+			controller: 'HomeCtrl'
+		})	
+		;
 	}
 ]);

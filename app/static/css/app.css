@@ -37,8 +37,32 @@ div.doc-unit > div.content.active {
 }
 
 #sidebar {
-	position: fixed;
-    top: 1em;
-    right: 1em;
-    margin-top: 30px;
+    margin-top: 95px;
+}
+
+#footer {
+	margin-top: 10px;
+	margin-bottom: 20px;
+	color: rgb(119, 119, 119);
+}
+
+#header {
+	background-color: #333333;
+	height: 34px;
+	padding-top: 15px;
+}
+
+#header a {
+	text-decoration: none;
+	color: #ffffff;
+	font-size: 20px;
+	line-height: 20px;
+	font-weight: bold;
+}
+#header a:hover {
+	text-decoration: underline;
+}
+
+#document h1 a {
+	color: #333333;
 }

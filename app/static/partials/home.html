@@ -1,0 +1,20 @@
+<div class="container-fluid">
+	<div class="row-fluid">
+		<div class='span12'>
+			<h1>Comentar <small>documentos en las redes sociales</small></h1>
+			<p>Esta plataforma te permite comentar p&aacute;rrafos espec&iacute;ficos de documentos en las principales redes sociales. As&iacute; como explorar documentos, p&aacute;rrafo por p&aacute;rrafo y ver los comentarios que otras personas han hecho.</p>
+
+			<h3>Documentos</h3>
+			<p>Aqu&iacute; se listan los documentos que est&aacute;n disponibles en la plataforma.</p>
+			<ul>
+				<li ng-repeat='doc in index'><a href="{{'/#/' + doc.id}}">{{doc.name}}</a></li>
+			</ul>
+
+ 			<div id="disqus_thread"></div>
+    		<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    		<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    		<p class="text-center"><a href="http://nodejs.org/" target="_blank"><img src="/static/img/nodejs-badge.png" alt="Powered by node.js"></a></p>
+
+		</div>
+	</div>
+</div>

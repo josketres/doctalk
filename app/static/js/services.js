@@ -1,5 +1,15 @@
 angular.module('doctalkServices', ['ngResource']).
 
+factory('Index', function($resource) {
+	return $resource('/static/data/index.json', {}, {
+		query: {
+			method: 'GET',
+			cache : true,
+			isArray: true
+		}
+	});
+}).
+
 factory('Document', function($resource) {
 	return $resource('/static/data/:documentId/document.json', {}, {
 		query: {

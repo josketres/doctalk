@@ -14,10 +14,6 @@ app.use('/static', express.static(__dirname + '/app/static'));
 app.get('/', function(req, res) {
 	res.render('index');
 });
-app.get('/la/reforma-energetica', function(req, res) {
-	res.render('reforma-energetica');
-});
-
 app.get('/api/document/:documentId/:paragraphId/comments', api.comments);
 app.post('/api/document/:documentId/:paragraphId/comments', api.addComments);
 

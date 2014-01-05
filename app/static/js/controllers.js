@@ -1,5 +1,15 @@
 /**
  * @description
+ * ...
+ */
+
+function HomeCtrl($scope, Index) {
+
+	$scope.index = Index.query();
+};
+
+/**
+ * @description
  * This controller shows a document with all of its parts.
  */
 
